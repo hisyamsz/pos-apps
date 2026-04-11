@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldLabel, FieldError, FieldGroup, FieldSet } from "@/components/ui/field";
 import { LoginForm, loginSchema } from "@/validations/auth-validation";
 import { INITIAL_AUTH_LOGIN_FORM } from "@/constants/auth-constant";
+import FormInput from "@/components/common/form-input";
 
 export default function Login() {
   const form = useForm<LoginForm>({
@@ -30,46 +31,21 @@ export default function Login() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FieldSet>
             <FieldGroup className="space-y-1">
-              <Controller
+              <FormInput
+                form={form}
                 name="email"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-
-                    <Input
-                      {...field}
-                      id={field.name}
-                      type="email"
-                      placeholder="email@example.com"
-                      aria-invalid={fieldState.invalid}
-                      autoComplete="off"
-                    />
-
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-                )}
+                label="Email"
+                placeholder="example@email.com"
+                type="email"
+                autoFocus
               />
 
-              <Controller
+              <FormInput
+                form={form}
                 name="password"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>Password</FieldLabel>
-
-                    <Input
-                      {...field}
-                      id={field.name}
-                      type="password"
-                      placeholder="********"
-                      aria-invalid={fieldState.invalid}
-                      autoComplete="off"
-                    />
-
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  </Field>
-                )}
+                label="Password"
+                placeholder="********"
+                type="password"
               />
             </FieldGroup>
           </FieldSet>
