@@ -6,7 +6,7 @@ interface CreateServerOptions {
   isAdmin?: boolean;
 }
 
-export async function createClient({ isAdmin }: CreateServerOptions) {
+export async function createClient({ isAdmin }: CreateServerOptions = {}) {
   const cookieStore = await cookies();
   const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_ANON_KEY } = environment;
 

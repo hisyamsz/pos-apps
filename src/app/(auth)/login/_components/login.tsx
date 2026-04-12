@@ -1,24 +1,55 @@
 "use client";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Field, FieldLabel, FieldError, FieldGroup, FieldSet } from "@/components/ui/field";
-import { LoginForm, loginSchema } from "@/validations/auth-validation";
-import { INITIAL_AUTH_LOGIN_FORM } from "@/constants/auth-constant";
+import { FieldGroup, FieldSet } from "@/components/ui/field";
+import { LoginForm, loginSchemaForm } from "@/validations/auth-validation";
+import {
+  INITIAL_AUTH_LOGIN_FORM,
+  INITIAL_STATE_LOGIN_FORM,
+} from "@/constants/auth-constant";
 import FormInput from "@/components/common/form-input";
+import { startTransition, useActionState, useEffect } from "react";
+import { login } from "../actions";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Login() {
   const form = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginSchemaForm),
     defaultValues: INITIAL_AUTH_LOGIN_FORM,
   });
 
+  const [loginState, loginAction, isPendingLogin] = useActionState(
+    login,
+    INITIAL_STATE_LOGIN_FORM,
+  );
+
   function onSubmit(data: LoginForm) {
-    console.log("LOGIN:", data);
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    startTransition(() => {
+      loginAction(formData);
+    });
   }
+
+  useEffect(() => {
+    if (loginState.status === "error") {
+      startTransition(() => {
+        loginAction(null);
+      });
+    }
+  }, [loginState]);
 
   return (
     <Card>
@@ -50,8 +81,15 @@ export default function Login() {
             </FieldGroup>
           </FieldSet>
 
-          <Button type="submit" className="w-full">
-            Login
+          <Button type="submit" className="w-full" disabled={isPendingLogin}>
+            {isPendingLogin ? (
+              <>
+                <Spinner />
+                Loging in...
+              </>
+            ) : (
+              "Login"
+            )}
           </Button>
         </form>
       </CardContent>
