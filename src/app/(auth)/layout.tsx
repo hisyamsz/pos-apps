@@ -1,5 +1,6 @@
 import { DarkmodeToggle } from "@/components/common/darkmode-toggle";
-import { Computer } from "lucide-react";
+import { Coffee01Icon, Coffee03Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { ReactNode } from "react";
 
 interface AuthLayoutProps {
@@ -15,7 +16,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
       <div className="flex flex-col w-full max-w-sm gap-6">
         <div className="flex items-center self-center gap-4 text-xl font-semibold">
           <div className="p-2 rounded-full bg-amber-500">
-            <Computer />
+            <HugeiconsIcon icon={Coffee01Icon} size={28} />
           </div>
           POS Apps
         </div>
