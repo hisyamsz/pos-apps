@@ -22,7 +22,10 @@ export async function login(
   if (!validateFields.success) {
     return {
       status: "error",
-      errors: validateFields.error.flatten().fieldErrors,
+      errors: {
+        ...validateFields.error.flatten().fieldErrors,
+        _form: [],
+      },
     };
   }
 

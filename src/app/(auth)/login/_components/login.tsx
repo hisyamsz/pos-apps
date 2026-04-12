@@ -20,6 +20,7 @@ import FormInput from "@/components/common/form-input";
 import { startTransition, useActionState, useEffect } from "react";
 import { login } from "../actions";
 import { Spinner } from "@/components/ui/spinner";
+import { toast } from "sonner";
 
 export default function Login() {
   const form = useForm<LoginForm>({
@@ -45,6 +46,9 @@ export default function Login() {
 
   useEffect(() => {
     if (loginState.status === "error") {
+      toast.error("Login failed. Please try again.", {
+        description: loginState.errors?._form?.[0] || undefined,
+      });
       startTransition(() => {
         loginAction(null);
       });
