@@ -7,6 +7,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
+import DashboardBreadcrumb from "./_components/dashboard_breadcrumb";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               orientation="vertical"
               className="self-center h-8 mr-2"
             />
+            <DashboardBreadcrumb />
           </div>
           <div className="px-4">
             <DarkmodeToggle />

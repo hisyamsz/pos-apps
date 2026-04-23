@@ -31,7 +31,7 @@ export default function AppSidebar() {
   const { isMobile } = useSidebar();
 
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -73,8 +73,7 @@ export default function AppSidebar() {
                 className="rounded-lg min-w-56"
                 side={isMobile ? "bottom" : "right"}
                 align="end"
-                sideOffset={4}
-              >
+                sideOffset={4}>
                 <DropdownMenuLabel className="p-0 font-normal">
                   <div className="flex items-center gap-4 px-1 py-1.5">
                     <Avatar className="w-8 h-8 rounded-lg">
