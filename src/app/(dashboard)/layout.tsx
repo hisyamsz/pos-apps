@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
 import DashboardBreadcrumb from "./_components/dashboard_breadcrumb";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -16,7 +17,9 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <TooltipProvider>
+        <AppSidebar />
+      </TooltipProvider>
       <SidebarInset className="overflow-x-hidden">
         <header className="flex items-center justify-between h-16 gap-2 shrink-0 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
