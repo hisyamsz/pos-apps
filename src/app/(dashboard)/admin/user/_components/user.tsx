@@ -60,7 +60,7 @@ export default function UserManagement() {
               <div className="flex items-center gap-3">
                 <Avatar className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-heading font-semibold text-sm">
                   <AvatarFallback className="bg-transparent text-primary">
-                    {user.name?.slice(0, 2).toUpperCase() || "U"}
+                    {user.name?.slice(0, 2)?.toUpperCase() || "U"}
                   </AvatarFallback>
                 </Avatar>
                 <div>
@@ -75,7 +75,7 @@ export default function UserManagement() {
                   ID: {user.id?.slice(0, 8)}
                 </span>
                 {user.created_at && (
-                  <span className="text-[10px] text-muted-foreground block mt-1">
+                  <span className="font-mono text-xs text-muted-foreground block mt-1">
                     Joined: {new Date(user.created_at).toLocaleDateString()}
                   </span>
                 )}
