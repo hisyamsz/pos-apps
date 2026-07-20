@@ -53,19 +53,21 @@ export default function Login() {
         loginAction(null);
       });
     }
-  }, [loginState]);
+  }, [loginState, loginAction]);
 
   return (
-    <Card>
+    <Card className="shadow-none border-border">
       <CardHeader className="text-center">
-        <CardTitle className="text-xl">Welcome to our cafe</CardTitle>
+        <CardTitle className="text-2xl font-heading font-bold tracking-tight text-foreground">
+          Welcome to our cafe
+        </CardTitle>
         <CardDescription>Login to access your account</CardDescription>
       </CardHeader>
 
       <CardContent>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FieldSet>
-            <FieldGroup className="space-y-1">
+            <FieldGroup className="space-y-3">
               <FormInput
                 form={form}
                 name="email"
@@ -85,11 +87,11 @@ export default function Login() {
             </FieldGroup>
           </FieldSet>
 
-          <Button type="submit" className="w-full" disabled={isPendingLogin}>
+          <Button type="submit" className="w-full h-10 font-semibold transition-all duration-200" disabled={isPendingLogin}>
             {isPendingLogin ? (
               <>
                 <Spinner />
-                Loging in...
+                Logging in...
               </>
             ) : (
               "Login"

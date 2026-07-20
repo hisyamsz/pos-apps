@@ -15,10 +15,10 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
       </div>
       <div className="flex flex-col w-full max-w-sm gap-6">
         <div className="flex items-center self-center gap-4 text-xl font-semibold">
-          <div className="p-2 rounded-full bg-amber-500">
+          <div className="p-2 rounded-full bg-primary text-primary-foreground">
             <HugeiconsIcon icon={Coffee01Icon} size={28} />
           </div>
-          POS Apps
+          <span className="font-heading font-bold text-foreground">POS Apps</span>
         </div>
         <div>{children}</div>
       </div>
