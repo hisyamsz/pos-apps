@@ -52,7 +52,7 @@ export default function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <div className="font-semibold">
-                <div className="p-2 rounded-full bg-amber-500">
+                <div className="p-2 rounded-full bg-primary text-primary-foreground">
                   <HugeiconsIcon icon={Coffee01Icon} />
                 </div>
                 <p className="text-base">POS Apps</p>
@@ -74,9 +74,11 @@ export default function AppSidebar() {
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <a
                       href={item.url}
-                      className={cn("px-4 py-3 h-auto", {
-                        "bg-amber-500 text-white hover:bg-amber-500! hover:text-white!":
+                      className={cn("px-4 py-3 h-auto transition-all duration-200 border-l-2 border-transparent", {
+                        "bg-sidebar-accent text-sidebar-accent-foreground border-primary!":
                           pathname === item.url,
+                        "text-sidebar-foreground/75 hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground":
+                          pathname !== item.url,
                       })}
                     >
                       {item.icon && <HugeiconsIcon icon={item.icon} />}
